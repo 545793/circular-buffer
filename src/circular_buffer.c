@@ -71,7 +71,7 @@ bool take_away(CircularBuffer *buffer, int *value){
 }
 
 void print_buffer(CircularBuffer *buffer){
-    printf("Buffer: ")
+    printf("Buffer: ");
     printf("[");
     printf("%d", buffer->data[0]);
     for (int i=1; i<buffer->capacity; i++)
