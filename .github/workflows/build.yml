@@ -1,0 +1,32 @@
+
+name: Build Circular Buffer
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository and submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+
+      - name: Build project
+        run: make
+
+      - name: Run circular buffer program
+        run: make run
+
+      - name: Verify clean build
+        run: |
+          make clean
+          make
+          make run
